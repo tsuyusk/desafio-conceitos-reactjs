@@ -11,10 +11,18 @@ body {
 
 body > div {
   width: 100%;
-  margin: 20px;
+  height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+body > div > div {
+  width: 300px;
+  padding: 5px;
+  border-left: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+  height: 100%;
 }
 
 div li {

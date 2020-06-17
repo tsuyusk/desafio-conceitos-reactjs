@@ -8,32 +8,48 @@ import "./styles.css";
 
 function App() {
   const [repositories, setRepositories] = useState([]);
+  const [ error, setError ] = useState(false);
   async function handleAddRepository(title, url, techs) {
-    const repositoryToBeSent = {
-      title,
-      url,
-      techs,
-    };
-    const response = await api.post("/repositories", repositoryToBeSent);
-    setRepositories([...repositories, response.data]);
+    try {
+      setError(false);
+      const repositoryToBeSent = {
+        title,
+        url,
+        techs,
+      };
+      const response = await api.post("/repositories", repositoryToBeSent);
+      setRepositories([...repositories, response.data]);
+    } catch {
+      setError(true);
+    }
   }
 
   async function handleLikeRepository(id) {
-    const response = await api.post(`/repositories/${id}/like`);
-    const newRepositories = [...repositories];
-    const selectedRepositoryIndex = repositories.findIndex(
-      (repository) => repository.id === id
-    );
-    newRepositories[selectedRepositoryIndex].likes = response.data.likes;
-    setRepositories(newRepositories);
+    try {
+      setError(false);
+      const response = await api.post(`/repositories/${id}/like`);
+      const newRepositories = [...repositories];
+      const selectedRepositoryIndex = repositories.findIndex(
+        (repository) => repository.id === id
+      );
+      newRepositories[selectedRepositoryIndex].likes = response.data.likes;
+      setRepositories(newRepositories);
+    } catch {
+      setError(true);
+    }
   }
 
   async function handleRemoveRepository(id) {
-    api.delete(`/repositories/${id}`);
-    const newRepositories = repositories.filter(
-      (repository) => repository.id !== id
-    );
-    setRepositories(newRepositories);
+    try {
+      setError(false);
+      api.delete(`/repositories/${id}`);
+      const newRepositories = repositories.filter(
+        (repository) => repository.id !== id
+      );
+      setRepositories(newRepositories);
+    } catch {
+      setError(true);
+    }
   }
 
   useEffect(() => {
@@ -42,7 +58,9 @@ function App() {
 
   return (
     <div>
+      <h2>Repository</h2>
       <Form handleAddRepository={handleAddRepository} />
+      {error && <p>Error..</p>}
       <List
         repositories={repositories}
         handleLikeRepository={handleLikeRepository}
