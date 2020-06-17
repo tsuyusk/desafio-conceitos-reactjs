@@ -6,20 +6,26 @@
 
 body {
   font-size: 14px;
+  font-family: sans-serif;
 }
 
-div {
+body > div {
   width: 100%;
   margin: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 div li {
+  margin-top: 15px;
   display: flex;
   align-items: center;
-}
-
-div li + li {
-  margin-top: 15px;
+  flex-direction: column;
+  border-radius: 2px;
+  border: 1px solid #888;
+  padding: 8px;
+  margin: 8px 0;
 }
 
 button {
@@ -33,7 +39,31 @@ button {
   font-size: 14px;
 }
 
+.buttons-list {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 5px;
+}
+
 div li button {
   margin: 0 15px;
   background: #ca4949;
+}
+
+.bubble-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.bubble {
+  background: #44dd;
+  color: #fff;
+  font-weight: 700;
+  margin: 2px;
+  padding: 4px;
+}
+
+div li button.-green {
+  background: #22dd33;
 }
