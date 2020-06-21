@@ -4,23 +4,29 @@ import api from "./services/api";
 
 import Form from "./components/Form";
 import List from "./components/List";
+import { Spinner } from "reactstrap";
+
 import "./styles.css";
 
 function App() {
   const [repositories, setRepositories] = useState([]);
-  const [ error, setError ] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   async function handleAddRepository(title, url, techs) {
     try {
       setError(false);
+      setLoading(true);
       const repositoryToBeSent = {
         title,
-        url,
+        url: `https://github.com/${url}`,
         techs,
       };
       const response = await api.post("/repositories", repositoryToBeSent);
       setRepositories([...repositories, response.data]);
+      setLoading(false);
     } catch {
       setError(true);
+      setLoading(false);
     }
   }
 
@@ -58,9 +64,11 @@ function App() {
 
   return (
     <div>
-      <h2>Repository</h2>
       <Form handleAddRepository={handleAddRepository} />
-      {error && <p>Error..</p>}
+      <div className="center -far">
+        {loading && <Spinner />}
+        {error && <p className="text-danger">Error..</p>}
+      </div>
       <List
         repositories={repositories}
         handleLikeRepository={handleLikeRepository}

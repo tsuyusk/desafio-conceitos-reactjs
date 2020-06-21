@@ -2,6 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none;
+}
+
+.title {
+  text-align: center;
 }
 
 body {
@@ -18,7 +23,7 @@ body > div {
 }
 
 body > div > div {
-  width: 300px;
+  width: 500px;
   padding: 5px;
   border-left: 1px solid #aaa;
   border-right: 1px solid #aaa;
@@ -39,7 +44,7 @@ div li {
 button {
   background: #7159c1;
   color: #fff;
-  border: 0;
+  border: none;
   padding: 10px 15px;
   cursor: pointer;
   margin-top: 15px;
@@ -49,7 +54,7 @@ button {
 
 .buttons-list {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   width: 100%;
   margin-top: 5px;
 }
@@ -74,4 +79,19 @@ div li button {
 
 div li button.-green {
   background: #22dd33;
+}
+
+.input-group {
+  padding: 0 20px;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.-far {
+  margin: 10px;
 }

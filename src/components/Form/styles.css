@@ -1,21 +1,5 @@
-* {
-  outline: none;
-}
-
-input {
-  border: none;
-  border-bottom: 1px solid #555;
-  padding: 5px;
-  transition: all 0.5s ease;
-}
-
-input:valid,
-input:focus {
-  border-bottom: 1px solid #dd1122;
-}
-
-.field {
+.button-container {
   display: flex;
-  flex-direction: column;
-  margin: 8px 0;
+  align-items: center;
+  justify-content: center;
 }
